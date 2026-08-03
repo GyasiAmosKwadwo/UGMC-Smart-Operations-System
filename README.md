@@ -38,14 +38,14 @@ To design and implement a smart hospital operations optimization system for the 
 
 The project aims to:
 
-* Design a database that stores hospital operational data including departments, service requests, road networks, and available resources.
-* Implement custom data structures without relying on Java's built-in implementations for the assessed components.
-* Prioritize hospital service requests using multiple scheduling strategies.
-* Compute efficient routes between hospital departments using graph algorithms.
-* Manage hospital resources such as ambulances, nurses, wheelchairs, and laboratory personnel.
-* Compare the efficiency of multiple searching and sorting algorithms.
-* Evaluate algorithm performance using empirical runtime and memory measurements.
-* Generate reports and visualizations showing algorithm performance as input sizes increase.
+- Design a database that stores hospital operational data including departments, service requests, road networks, and available resources.
+- Implement custom data structures without relying on Java's built-in implementations for the assessed components.
+- Prioritize hospital service requests using multiple scheduling strategies.
+- Compute efficient routes between hospital departments using graph algorithms.
+- Manage hospital resources such as ambulances, nurses, wheelchairs, and laboratory personnel.
+- Compare the efficiency of multiple searching and sorting algorithms.
+- Evaluate algorithm performance using empirical runtime and memory measurements.
+- Generate reports and visualizations showing algorithm performance as input sizes increase.
 
 ---
 
@@ -55,21 +55,21 @@ The UGMC Smart Operations System is a decision-support platform that assists hos
 
 The system will maintain information about:
 
-* Hospital departments and service locations
-* Internal road and pathway network
-* Service requests
-* Medical resources
-* Operational assignments
-* Algorithm execution records
+- Hospital departments and service locations
+- Internal road and pathway network
+- Service requests
+- Medical resources
+- Operational assignments
+- Algorithm execution records
 
 Users will be able to:
 
-* Register service requests.
-* Prioritize emergency and routine requests.
-* Allocate available resources.
-* Determine optimal travel routes.
-* Search and retrieve operational records efficiently.
-* Analyze algorithm performance through generated reports.
+- Register service requests.
+- Prioritize emergency and routine requests.
+- Allocate available resources.
+- Determine optimal travel routes.
+- Search and retrieve operational records efficiently.
+- Analyze algorithm performance through generated reports.
 
 The primary focus of the system is algorithmic optimization rather than patient record management.
 
@@ -81,23 +81,23 @@ The project focuses on hospital operational activities rather than full clinical
 
 The system will include:
 
-* Department management
-* Service request management
-* Resource management
-* Queue management
-* Route optimization
-* Search operations
-* Sorting operations
-* Performance evaluation
-* Database integration
+- Department management
+- Service request management
+- Resource management
+- Queue management
+- Route optimization
+- Search operations
+- Sorting operations
+- Performance evaluation
+- Database integration
 
 The system will not implement:
 
-* Electronic medical records
-* Patient diagnosis
-* Billing and accounting
-* Pharmacy inventory management
-* Clinical treatment workflows
+- Electronic medical records
+- Patient diagnosis
+- Billing and accounting
+- Pharmacy inventory management
+- Clinical treatment workflows
 
 ---
 
@@ -105,16 +105,16 @@ The system will not implement:
 
 The system will consist of the following modules:
 
-* Database Management Module
-* Data Loading Module
-* Hospital Network Module
-* Service Request Module
-* Resource Management Module
-* Scheduling Engine
-* Route Optimization Engine
-* Searching and Sorting Engine
-* Performance Analysis Module
-* Reporting Module
+- Database Management Module
+- Data Loading Module
+- Hospital Network Module
+- Service Request Module
+- Resource Management Module
+- Scheduling Engine
+- Route Optimization Engine
+- Searching and Sorting Engine
+- Performance Analysis Module
+- Reporting Module
 
 ---
 
@@ -122,21 +122,21 @@ The system will consist of the following modules:
 
 The project will implement the following custom data structures:
 
-* Dynamic Array
-* Linked List
-* Stack
-* Queue
-* Circular Queue
-* Deque
-* Priority Queue
-* Binary Search Tree
-* Red-Black Tree
-* B-Tree
-* Hash Table
-* Set
-* Map
-* Disjoint Set
-* Graph (Adjacency List and Adjacency Matrix)
+- Dynamic Array
+- Linked List
+- Stack
+- Queue
+- Circular Queue
+- Deque
+- Priority Queue
+- Binary Search Tree
+- Red-Black Tree
+- B-Tree
+- Hash Table
+- Set
+- Map
+- Disjoint Set
+- Graph (Adjacency List and Adjacency Matrix)
 
 ---
 
@@ -146,28 +146,28 @@ The proposed algorithms include:
 
 Searching:
 
-* Linear Search
-* Binary Search
+- Linear Search
+- Binary Search
 
 Sorting:
 
-* Selection Sort
-* Insertion Sort
-* Merge Sort
-* Quick Sort
+- Selection Sort
+- Insertion Sort
+- Merge Sort
+- Quick Sort
 
 Graph Algorithms:
 
-* Breadth-First Search (BFS)
-* Depth-First Search (DFS)
-* Dijkstra's Algorithm
-* Prim's Algorithm
-* Kruskal's Algorithm
+- Breadth-First Search (BFS)
+- Depth-First Search (DFS)
+- Dijkstra's Algorithm
+- Prim's Algorithm
+- Kruskal's Algorithm
 
 Optimization:
 
-* Greedy Algorithm
-* Dynamic Programming
+- Greedy Algorithm
+- Dynamic Programming
 
 ---
 
@@ -175,15 +175,19 @@ Optimization:
 
 Upon completion, the system will be able to:
 
-* Efficiently prioritize hospital service requests.
-* Determine optimal routes between hospital departments.
-* Allocate available resources based on operational constraints.
-* Demonstrate the practical implementation of classical data structures.
-* Compare algorithm performance using empirical evidence.
-* Produce runtime statistics, performance graphs, and technical reports.
+- Efficiently prioritize hospital service requests.
+- Determine optimal routes between hospital departments.
+- Allocate available resources based on operational constraints.
+- Demonstrate the practical implementation of classical data structures.
+- Compare algorithm performance using empirical evidence.
+- Produce runtime statistics, performance graphs, and technical reports.
 
 ---
 
 ## 12. Conclusion
 
 The UGMC Smart Operations System provides a realistic Ghanaian healthcare scenario for demonstrating the practical application of Data Structures and Algorithms. By integrating custom-built data structures, graph algorithms, searching, sorting, optimization techniques, database persistence, and empirical performance evaluation, the project satisfies the objectives of the Joint DSA Semester Project while addressing operational challenges commonly encountered in modern healthcare facilities.
+
+## Branches
+
+amos-dev
