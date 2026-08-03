@@ -190,4 +190,6 @@ The UGMC Smart Operations System provides a realistic Ghanaian healthcare scenar
 
 ## Branches
 
+services
 amos-dev
+rita-dev
