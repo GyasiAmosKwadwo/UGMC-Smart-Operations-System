@@ -1,3 +1,16 @@
 resource_id,resource_type,home_location_id,capacity,availability_status
-V001,Van,L003,4,AVAILABLE
-R001,Rider,L002,1,AVAILABLE
+RES001,Ambulance (ALS-1),L011,4,AVAILABLE
+RES002,Ambulance (ALS-2),L011,4,AVAILABLE
+RES003,Rapid Response Motorcycle,L011,1,AVAILABLE
+RES004,Emergency Transport Van,L011,6,AVAILABLE
+RES005,Wheelchair Porter Alpha,L001,1,AVAILABLE
+RES006,Wheelchair Porter Beta,L002,1,AVAILABLE
+RES007,Wheelchair Porter Gamma,L007,1,AVAILABLE
+RES008,Critical Care Nurse Escort 1,L003,1,AVAILABLE
+RES009,Critical Care Nurse Escort 2,L003,1,DISPATCHED
+RES010,Lab Specimen Courier 1,L005,2,AVAILABLE
+RES011,Lab Specimen Courier 2,L005,2,AVAILABLE
+RES012,Mobile X-Ray Unit A,L004,1,AVAILABLE
+RES013,Blood Bank Dispatch Runner,L009,2,AVAILABLE
+RES014,Pharmacy Delivery Cart,L010,3,AVAILABLE
+RES015,Surgical Equipment Runner,L012,2,MAINTENANCE
