@@ -246,7 +246,6 @@ external dependencies; swap in `SqliteDatabase` later without changing callers.
 
 ## Branches
 
-amos-dev
 services
+amos-dev
 rita-dev
-main
