@@ -188,6 +188,65 @@ Upon completion, the system will be able to:
 
 The UGMC Smart Operations System provides a realistic Ghanaian healthcare scenario for demonstrating the practical application of Data Structures and Algorithms. By integrating custom-built data structures, graph algorithms, searching, sorting, optimization techniques, database persistence, and empirical performance evaluation, the project satisfies the objectives of the Joint DSA Semester Project while addressing operational challenges commonly encountered in modern healthcare facilities.
 
+## Getting Started (Bootstrap)
+
+This repository is bootstrapped as a **plain Java 21 project** (no Maven/Gradle yet).
+The core data structures are implemented from scratch in `src/main/java/com/ugmc/smartops/datastructure/`.
+
+### Requirements
+
+- JDK 21+
+- No external dependencies required for the current bootstrap
+
+### Build & Run
+
+```bash
+# Make scripts executable (once)
+chmod +x build.sh run.sh
+
+# Compile all sources into out/
+./build.sh
+
+# Run the interactive console menu
+./run.sh
+```
+
+### Console Menu
+
+The menu lets an examiner run demonstrations without editing code:
+
+| Option | What it does                                                                                |
+| ------ | ------------------------------------------------------------------------------------------- |
+| 1      | Load CSV template data from `docs/questions/`                                               |
+| 2      | Show loaded dataset summary                                                                 |
+| 3      | Demonstrate custom data structures (stack, queue, circular queue, deque, heap, linked list) |
+| 4      | Demonstrate searching & sorting (linear/binary search, selection/insertion/merge/quicksort) |
+| 5      | Reload data from persistence                                                                |
+| 0      | Exit                                                                                        |
+
+### Project Structure
+
+```
+src/main/java/com/ugmc/smartops/
+├── Main.java                 # Entry point
+├── ConsoleApp.java           # Interactive console menu
+├── model/                    # Location, Road, ServiceRequest, Resource, AlgorithmRun
+├── datastructure/            # Custom data structures (from scratch)
+├── algorithm/                # SearchEngine, SortEngine
+├── db/                       # Database interface, FileDatabase, DataLoader, OperationalStore
+└── util/                     # CsvReader
+```
+
+### Persistence Note
+
+SQLite is the chosen target database. The SQLite JDBC driver will be added when
+Maven is installed (scheduled next session). Currently a file-based placeholder
+(`FileDatabase`) implements the `Database` interface so the system runs with zero
+external dependencies; swap in `SqliteDatabase` later without changing callers.
+
 ## Branches
 
 amos-dev
+services
+rita-dev
+main

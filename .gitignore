@@ -1,0 +1,12 @@
+# Compile output
+out/
+sources.txt
+
+# Data persistence files
+data/
+
+# OS / editor noise
+.DS_Store
+*.class
+.idea/
+*.iml
