@@ -1,16 +1,21 @@
 resource_id,resource_type,home_location_id,capacity,availability_status
-RES001,Ambulance (ALS-1),L011,4,AVAILABLE
-RES002,Ambulance (ALS-2),L011,4,AVAILABLE
-RES003,Rapid Response Motorcycle,L011,1,AVAILABLE
-RES004,Emergency Transport Van,L011,6,AVAILABLE
-RES005,Wheelchair Porter Alpha,L001,1,AVAILABLE
-RES006,Wheelchair Porter Beta,L002,1,AVAILABLE
-RES007,Wheelchair Porter Gamma,L007,1,AVAILABLE
+RES001,Advanced Life Support Ambulance (UGMC-1),L011,4,AVAILABLE
+RES002,Advanced Life Support Ambulance (UGMC-2),L011,4,AVAILABLE
+RES003,Emergency Response Motorcycle,L011,1,AVAILABLE
+RES004,Patient Transport Van,L011,6,AVAILABLE
+RES005,Trauma Wheelchair Porter Alpha,L001,1,AVAILABLE
+RES006,OPD Wheelchair Porter Beta,L002,1,AVAILABLE
+RES007,Maternity Porter Escort,L007,1,AVAILABLE
 RES008,Critical Care Nurse Escort 1,L003,1,AVAILABLE
 RES009,Critical Care Nurse Escort 2,L003,1,DISPATCHED
-RES010,Lab Specimen Courier 1,L005,2,AVAILABLE
-RES011,Lab Specimen Courier 2,L005,2,AVAILABLE
-RES012,Mobile X-Ray Unit A,L004,1,AVAILABLE
-RES013,Blood Bank Dispatch Runner,L009,2,AVAILABLE
-RES014,Pharmacy Delivery Cart,L010,3,AVAILABLE
-RES015,Surgical Equipment Runner,L012,2,MAINTENANCE
+RES010,Pathology Specimen Runner 1,L005,2,AVAILABLE
+RES011,Pathology Specimen Runner 2,L005,2,AVAILABLE
+RES012,Mobile X-Ray Technician Unit,L004,1,AVAILABLE
+RES013,Blood Bank Cold Chain Courier,L009,2,AVAILABLE
+RES014,Pharmacy Stat Delivery Cart,L010,3,AVAILABLE
+RES015,CSSD Sterile Pack Technician,L016,2,AVAILABLE
+RES016,Donor Breast Milk Courier (Human Milk Bank),L008,1,AVAILABLE
+RES017,Oncology Chemotherapy Transport Cart,L014,2,AVAILABLE
+RES018,Renal Dialysis Transport Attendant,L015,1,AVAILABLE
+RES019,MTSC Simulation Equipment Runner,L012,2,AVAILABLE
+RES020,Biomedical Maintenance Response Van,L017,4,MAINTENANCE

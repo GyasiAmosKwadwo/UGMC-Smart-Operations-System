@@ -1,16 +1,21 @@
 location_id,name,area,location_type,x_coord,y_coord
-L001,UGMC Emergency Department,Emergency Wing,Emergency,5.6510,0.1850
-L002,Outpatient Department (OPD),Main Clinic Wing,Clinical,5.6515,0.1855
-L003,Intensive Care Unit (ICU),Critical Care Block,Critical Care,5.6520,0.1860
-L004,Radiology & Imaging Centre,Diagnostics Wing,Diagnostic,5.6525,0.1865
-L005,Central Medical Laboratory,Diagnostics Wing,Diagnostic,5.6530,0.1870
-L006,Main Surgical Operating Theatre,Surgical Wing,Surgical,5.6535,0.1875
-L007,Maternity & Neonatal Care Unit,Maternal Wing,Clinical,5.6540,0.1880
-L008,Pediatric Intensive Care Unit,Maternal Wing,Critical Care,5.6545,0.1885
-L009,Blood Bank & Transfusion Centre,Diagnostics Wing,Diagnostic,5.6550,0.1890
-L010,Main Inpatient Pharmacy,Central Support Wing,Pharmacy,5.6555,0.1895
-L011,Ambulance Bay & Emergency Helipad,External Services,Emergency,5.6505,0.1845
-L012,Central Medical Stores & Equipment Depot,Support Wing,Support,5.6560,0.1900
-L013,Administrative & Operations Centre,Admin Block,Administrative,5.6565,0.1905
-L014,Main Security & Gate House,Perimeter,Security,5.6500,0.1840
-L015,Dialysis & Renal Care Unit,Specialist Wing,Clinical,5.6570,0.1910
+L001,UGMC Emergency & Trauma Centre,Emergency Block,Emergency,5.6506,-0.1854
+L002,Clinical Services OPD Block,Main Clinical Complex,Clinical,5.6510,-0.1850
+L003,Main Intensive Care Unit (ICU),Critical Care Wing,Critical Care,5.6515,-0.1846
+L004,Radiology & Medical Imaging Centre,Diagnostics Wing,Diagnostic,5.6520,-0.1842
+L005,Central Pathology & Medical Lab,Diagnostics Wing,Diagnostic,5.6525,-0.1838
+L006,Main Surgical Operating Suite,Surgical Complex,Surgical,5.6530,-0.1834
+L007,Women & Children Block (OBGYN & Maternity),Women & Children Complex,Clinical,5.6535,-0.1830
+L008,Neonatal ICU & Human Milk Bank,Women & Children Complex,Critical Care,5.6540,-0.1826
+L009,Blood Bank & Transfusion Unit,Diagnostics Wing,Diagnostic,5.6545,-0.1822
+L010,UGMC Central Pharmacy,Central Support Block,Pharmacy,5.6550,-0.1818
+L011,Ambulance Station & Emergency Helipad,Perimeter & Logistics,Emergency,5.6500,-0.1860
+L012,Medical Training & Simulation Centre (MTSC),Academic & Training Complex,Academic,5.6555,-0.1814
+L013,Medical Research Centre (MRC),Research Complex,Research,5.6560,-0.1810
+L014,Radiotherapy & Oncology Centre,Specialist Oncology Block,Clinical,5.6565,-0.1806
+L015,Dialysis & Renal Care Unit,Specialist Care Wing,Clinical,5.6570,-0.1802
+L016,Central Sterile Services Department (CSSD),Surgical Support Wing,Support,5.6532,-0.1832
+L017,Central Medical Stores & Equipment Depot,Logistics Block,Support,5.6575,-0.1798
+L018,UGMC Administration & Directorates,Admin Block,Administrative,5.6580,-0.1794
+L019,Main Security Gate (GA-337-6980),Main Entrance,Security,5.6495,-0.1865
+L020,IVF & Assisted Reproductive Tech Centre,Specialist Women Centre,Clinical,5.6538,-0.1828
