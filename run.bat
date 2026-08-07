@@ -6,11 +6,12 @@ IF NOT EXIST out (
     call build.bat
 )
 
-SET JAVA_CMD=java
-
+SET "JAVA_CMD=java"
 WHERE java >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 (
-    FOR /F "tokens=*" %%I IN ('DIR /B /S "C:\Users\%USERNAME%\.antigravity-ide\java.exe" 2^>nul') DO SET "JAVA_CMD=%%I"
+    FOR /F "tokens=*" %%I IN ('DIR /B /S "%USERPROFILE%\.antigravity-ide\java.exe" 2^>nul') DO (
+        SET "JAVA_CMD=%%I"
+    )
 )
 
 "%JAVA_CMD%" -cp out com.ugmc.smartops.Main %*

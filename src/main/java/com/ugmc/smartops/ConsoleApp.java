@@ -1,21 +1,11 @@
 package com.ugmc.smartops;
 
-import com.ugmc.smartops.algorithm.SearchEngine;
-import com.ugmc.smartops.algorithm.SortEngine;
-import com.ugmc.smartops.datastructure.CircularQueue;
-import com.ugmc.smartops.datastructure.Deque;
-import com.ugmc.smartops.datastructure.DynamicArray;
-import com.ugmc.smartops.datastructure.LinkedList;
-import com.ugmc.smartops.datastructure.MinHeap;
-import com.ugmc.smartops.datastructure.Queue;
-import com.ugmc.smartops.datastructure.Stack;
+import com.ugmc.smartops.algorithm.*;
+import com.ugmc.smartops.datastructure.*;
 import com.ugmc.smartops.db.DataLoader;
 import com.ugmc.smartops.db.Database;
 import com.ugmc.smartops.db.OperationalStore;
-import com.ugmc.smartops.model.Location;
-import com.ugmc.smartops.model.Resource;
-import com.ugmc.smartops.model.Road;
-import com.ugmc.smartops.model.ServiceRequest;
+import com.ugmc.smartops.model.*;
 import java.util.Scanner;
 
 /**
@@ -51,7 +41,9 @@ public class ConsoleApp {
             System.out.println("2. Show loaded dataset summary");
             System.out.println("3. Demonstrate custom data structures");
             System.out.println("4. Demonstrate searching & sorting");
-            System.out.println("5. Reload data from persistence");
+            System.out.println("5. Demonstrate graph algorithms (BFS, DFS, Dijkstra, Prim, Kruskal)");
+            System.out.println("6. Demonstrate optimization algorithms (Greedy & Dynamic Programming)");
+            System.out.println("7. Reload data from persistence");
             System.out.println("0. Exit");
             System.out.print("Choose: ");
 
@@ -61,7 +53,9 @@ public class ConsoleApp {
                 case "2": showSummary(); break;
                 case "3": demoStructures(); break;
                 case "4": demoSearchSort(); break;
-                case "5": reloadFromDb(); break;
+                case "5": demoGraphAlgorithms(); break;
+                case "6": demoOptimizationAlgorithms(); break;
+                case "7": reloadFromDb(); break;
                 case "0":
                     System.out.println("Goodbye!");
                     return;
@@ -74,7 +68,6 @@ public class ConsoleApp {
     private void loadTemplates() {
         try {
             String msg = loader.loadTemplates("docs/questions");
-            // Index into the in-memory store.
             store.indexLocations(loader.loadLocations("docs/questions"));
             store.setRoads(loader.loadRoads("docs/questions"));
             store.setRequests(loader.loadServiceRequests("docs/questions"));
@@ -118,7 +111,7 @@ public class ConsoleApp {
         cq.enqueue(20);
         cq.enqueue(30);
         cq.dequeue();
-        cq.enqueue(40); // wrap-around
+        cq.enqueue(40);
         System.out.println("CircularQueue after wrap: " + cq);
 
         // Deque (urgent insertion)
@@ -137,12 +130,18 @@ public class ConsoleApp {
         Integer first = heap.extractMin();
         System.out.println("MinHeap dispatch order starts with: " + first);
 
-        // LinkedList iterator demo
-        LinkedList<String> list = new LinkedList<>();
-        list.addLast("A");
-        list.addLast("B");
-        list.addFirst("0");
-        System.out.println("LinkedList iterator: " + list);
+        // Red-Black Tree
+        RedBlackTree<String, String> rbt = new RedBlackTree<>();
+        rbt.put("Emergency", "L001");
+        rbt.put("Pharmacy", "L003");
+        rbt.put("ICU", "L002");
+        System.out.println("Red-Black Tree search for 'ICU': " + rbt.get("ICU"));
+
+        // B-Tree
+        BTree<Integer, String> btree = new BTree<>();
+        btree.put(101, "Dept A");
+        btree.put(102, "Dept B");
+        System.out.println("B-Tree search for key 101: " + btree.get(101));
     }
 
     private void demoSearchSort() {
@@ -158,7 +157,6 @@ public class ConsoleApp {
         System.out.println("Binary search precondition (isSorted): "
                 + SearchEngine.isSorted(sorted));
 
-        // Trace-style demonstration of each sort.
         runSort("Selection", unsorted.clone());
         runSort("Insertion", unsorted.clone());
         runSort("Merge", unsorted.clone());
@@ -178,6 +176,104 @@ public class ConsoleApp {
             System.out.print(v + " ");
         }
         System.out.println();
+    }
+
+    private void demoGraphAlgorithms() {
+        System.out.println("--- Graph Algorithms Demo (BFS, DFS, Dijkstra, Prim, Kruskal) ---");
+        Graph graph = buildHospitalGraph();
+
+        if (graph.getVertices().isEmpty()) {
+            System.out.println("Graph is empty.");
+            return;
+        }
+
+        DynamicArray<String> vList = new DynamicArray<>();
+        for (String v : graph.getVertices()) {
+            vList.add(v);
+        }
+
+        String startNode = vList.get(0);
+        String targetNode = vList.size() > 2 ? vList.get(2) : startNode;
+
+        // 1. BFS & DFS Traversal
+        System.out.println("\n1. Graph Traversals from start node '" + startNode + "':");
+        System.out.println("   BFS: " + GraphEngine.bfs(graph, startNode));
+        System.out.println("   DFS: " + GraphEngine.dfs(graph, startNode));
+
+        // 2. Dijkstra Shortest Path
+        System.out.println("\n2. Dijkstra Shortest Route (" + startNode + " -> " + targetNode + "):");
+        GraphEngine.PathResult pathResult = GraphEngine.dijkstra(graph, startNode, targetNode);
+        System.out.println("   Route: " + pathResult);
+
+        // 3. Minimum Spanning Trees (Prim vs Kruskal)
+        System.out.println("\n3. Minimum Spanning Tree (Hospital Network Connections):");
+        DynamicArray<Graph.Edge> primEdges = GraphEngine.primMST(graph);
+        System.out.println("   Prim's MST Edge Count: " + primEdges.size());
+        double primWeight = 0;
+        for (Graph.Edge e : primEdges) primWeight += e.getWeight();
+        System.out.println("   Prim's MST Total Distance/Time Weight: " + String.format("%.2f", primWeight));
+
+        DynamicArray<Graph.Edge> kruskalEdges = GraphEngine.kruskalMST(graph);
+        System.out.println("   Kruskal's MST Edge Count: " + kruskalEdges.size());
+        double kruskalWeight = 0;
+        for (Graph.Edge e : kruskalEdges) kruskalWeight += e.getWeight();
+        System.out.println("   Kruskal's MST Total Distance/Time Weight: " + String.format("%.2f", kruskalWeight));
+    }
+
+    private void demoOptimizationAlgorithms() {
+        System.out.println("--- Optimization Algorithms Demo (Greedy & Dynamic Programming) ---");
+        DynamicArray<ServiceRequest> requests = store.getRequests();
+
+        if (requests.isEmpty()) {
+            System.out.println("No requests loaded. Creating sample requests for demonstration...");
+            requests = new DynamicArray<>();
+            requests.add(new ServiceRequest("REQ001", "L001", "L003", "EMERGENCY", 5, "2026-08-07T10:00:00", "2026-08-07T10:30:00", "PENDING"));
+            requests.add(new ServiceRequest("REQ002", "L002", "L003", "URGENT", 4, "2026-08-07T10:05:00", "2026-08-07T11:00:00", "PENDING"));
+            requests.add(new ServiceRequest("REQ003", "L004", "L001", "ROUTINE", 2, "2026-08-07T10:10:00", "2026-08-07T12:00:00", "PENDING"));
+            requests.add(new ServiceRequest("REQ004", "L003", "L005", "ROUTINE", 1, "2026-08-07T10:15:00", "2026-08-07T13:00:00", "PENDING"));
+            requests.add(new ServiceRequest("REQ005", "L002", "L004", "EMERGENCY", 5, "2026-08-07T10:20:00", "2026-08-07T10:45:00", "PENDING"));
+        }
+
+        // 1. Greedy Dispatch Order
+        System.out.println("\n1. Greedy Choice Dispatch Prioritization:");
+        DynamicArray<ServiceRequest> greedyOrder = OptimizationEngine.greedyDispatch(requests);
+        for (int i = 0; i < Math.min(5, greedyOrder.size()); i++) {
+            ServiceRequest r = greedyOrder.get(i);
+            System.out.println("   [" + (i + 1) + "] ID: " + r.getRequestId()
+                    + " | Category: " + r.getCategory()
+                    + " | Urgency Score: " + r.getUrgency());
+        }
+
+        // 2. Dynamic Programming (0/1 Knapsack)
+        System.out.println("\n2. Dynamic Programming Capacity Planning (Budget Capacity = 10):");
+        OptimizationEngine.OptimizationResult dpResult = OptimizationEngine.dynamicProgrammingCapacityPlan(requests, 10);
+        System.out.println("   Total Urgency Priority Score Maximized: " + dpResult.getTotalValueScore());
+        System.out.println("   Total Budget Capacity Used: " + dpResult.getTotalWeightCapacityUsed() + " / 10");
+        System.out.println("   Requests Selected for Execution:");
+        for (int i = 0; i < dpResult.getSelectedRequests().size(); i++) {
+            ServiceRequest r = dpResult.getSelectedRequests().get(i);
+            System.out.println("     - " + r.getRequestId() + " (Category: " + r.getCategory()
+                    + ", Urgency: " + r.getUrgency() + ")");
+        }
+    }
+
+    private Graph buildHospitalGraph() {
+        Graph graph = new Graph(false);
+        DynamicArray<Road> roads = store.getRoads();
+
+        if (roads.isEmpty()) {
+            // Default UGMC hospital network topology if CSV not loaded
+            graph.addEdge("L001", "L002", 0.4); // Emergency -> OPD
+            graph.addEdge("L001", "L003", 0.8); // Emergency -> ICU
+            graph.addEdge("L002", "L004", 0.5); // OPD -> Radiology
+            graph.addEdge("L003", "L005", 0.6); // ICU -> Lab
+            graph.addEdge("L004", "L005", 0.3); // Radiology -> Lab
+        } else {
+            for (Road road : roads) {
+                graph.addEdge(road.getFromLocationId(), road.getToLocationId(), road.getEffectiveCost(), road.getRoadId());
+            }
+        }
+        return graph;
     }
 
     private void reloadFromDb() {

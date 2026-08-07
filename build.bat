@@ -1,20 +1,15 @@
 @echo off
 REM Windows Build Script for UGMC Smart Operations System
-REM Finds Java compiler in PATH or local extension JRE and compiles source files.
-
 SETLOCAL EnableDelayedExpansion
 
 IF EXIST out RMDIR /S /Q out
 MKDIR out
 
-SET JAVAC_CMD=javac
-
+SET "JAVAC_CMD=javac"
 WHERE javac >nul 2>nul
 IF %ERRORLEVEL% NEQ 0 (
-    IF EXIST "%LOCALAPPDATA%\Programs\antigravity\..." (
-        SET "JAVAC_CMD=%LOCALAPPDATA%\Programs\antigravity\..."
-    ) ELSE (
-        FOR /F "tokens=*" %%I IN ('DIR /B /S "C:\Users\%USERNAME%\.antigravity-ide\javac.exe" 2^>nul') DO SET "JAVAC_CMD=%%I"
+    FOR /F "tokens=*" %%I IN ('DIR /B /S "%USERPROFILE%\.antigravity-ide\javac.exe" 2^>nul') DO (
+        SET "JAVAC_CMD=%%I"
     )
 )
 
