@@ -1,4 +1,21 @@
 location_id,name,area,location_type,x_coord,y_coord
-L001,Balme Library,Legon,Library,5.650,0.190
-L002,Computer Science Department,Legon,Academic,5.651,0.188
-L003,UG Hospital,Legon,Health,5.655,0.185
+L001,UGMC Emergency & Trauma Centre,Emergency Block,Emergency,5.6506,-0.1854
+L002,Clinical Services OPD Block,Main Clinical Complex,Clinical,5.6510,-0.1850
+L003,Main Intensive Care Unit (ICU),Critical Care Wing,Critical Care,5.6515,-0.1846
+L004,Radiology & Medical Imaging Centre,Diagnostics Wing,Diagnostic,5.6520,-0.1842
+L005,Central Pathology & Medical Lab,Diagnostics Wing,Diagnostic,5.6525,-0.1838
+L006,Main Surgical Operating Suite,Surgical Complex,Surgical,5.6530,-0.1834
+L007,Women & Children Block (OBGYN & Maternity),Women & Children Complex,Clinical,5.6535,-0.1830
+L008,Neonatal ICU & Human Milk Bank,Women & Children Complex,Critical Care,5.6540,-0.1826
+L009,Blood Bank & Transfusion Unit,Diagnostics Wing,Diagnostic,5.6545,-0.1822
+L010,UGMC Central Pharmacy,Central Support Block,Pharmacy,5.6550,-0.1818
+L011,Ambulance Station & Emergency Helipad,Perimeter & Logistics,Emergency,5.6500,-0.1860
+L012,Medical Training & Simulation Centre (MTSC),Academic & Training Complex,Academic,5.6555,-0.1814
+L013,Medical Research Centre (MRC),Research Complex,Research,5.6560,-0.1810
+L014,Radiotherapy & Oncology Centre,Specialist Oncology Block,Clinical,5.6565,-0.1806
+L015,Dialysis & Renal Care Unit,Specialist Care Wing,Clinical,5.6570,-0.1802
+L016,Central Sterile Services Department (CSSD),Surgical Support Wing,Support,5.6532,-0.1832
+L017,Central Medical Stores & Equipment Depot,Logistics Block,Support,5.6575,-0.1798
+L018,UGMC Administration & Directorates,Admin Block,Administrative,5.6580,-0.1794
+L019,Main Security Gate (GA-337-6980),Main Entrance,Security,5.6495,-0.1865
+L020,IVF & Assisted Reproductive Tech Centre,Specialist Women Centre,Clinical,5.6538,-0.1828
