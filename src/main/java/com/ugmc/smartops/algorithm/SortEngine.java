@@ -12,15 +12,15 @@ public final class SortEngine {
     }
 
     // --- Selection sort: O(n^2), in-place, NOT stable ---
-    public static <T extends Comparable<T>> void selectionSort(T[] a) {
-        for (int i = 0; i < a.length - 1; i++) {
+    public static <T extends Comparable<T>> void selectionSort(T[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
             int minIdx = i;
-            for (int j = i + 1; j < a.length; j++) {
-                if (a[j].compareTo(a[minIdx]) < 0) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j].compareTo(arr[minIdx]) < 0) {
                     minIdx = j;
                 }
             }
-            swap(a, i, minIdx);
+            swap(arr, i, minIdx);
         }
     }
 
