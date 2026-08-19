@@ -11,6 +11,22 @@ public final class SortEngine {
     private SortEngine() {
     }
 
+    // --- Bubble sort: O(n^2), in-place, stable ---
+    public static <T extends Comparable<T>> void bubbleSort(T[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            boolean swapped = false;
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j].compareTo(arr[j + 1]) > 0) {
+                    swap(arr, j, j + 1);
+                    swapped = true;
+                }
+            }
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+
     // --- Selection sort: O(n^2), in-place, NOT stable ---
     public static <T extends Comparable<T>> void selectionSort(T[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
