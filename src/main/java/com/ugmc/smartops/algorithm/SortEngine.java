@@ -24,6 +24,17 @@ public final class SortEngine {
         }
     }
 
+// --- Bubble sort: O(n^2), in-place, stable ---
+public static <T extends Comparable<T>> void bubbleSort(T[] arr) {
+    for (int i = 0; i < arr.length - 1; i++) {
+        for (int j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j].compareTo(arr[j + 1]) > 0) {
+                swap(arr, j, j + 1);
+            }
+        }
+    }
+}
+
     // --- Insertion sort: O(n^2), in-place, stable ---
     public static <T extends Comparable<T>> void insertionSort(T[] a) {
         for (int i = 1; i < a.length; i++) {
