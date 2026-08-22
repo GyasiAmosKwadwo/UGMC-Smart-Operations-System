@@ -36,18 +36,19 @@ public static <T extends Comparable<T>> void bubbleSort(T[] arr) {
 }
 
     // --- Insertion sort: O(n^2), in-place, stable ---
-    public static <T extends Comparable<T>> void insertionSort(T[] a) {
-        for (int i = 1; i < a.length; i++) {
-            T key = a[i];
-            int j = i - 1;
-            while (j >= 0 && a[j].compareTo(key) > 0) {
-                a[j + 1] = a[j];
-                j--;
-            }
-            a[j + 1] = key;
-        }
-    }
+public static <T extends Comparable<T>> void insertionSort(T[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+        T current = arr[i];
+        int j = i - 1;
 
+        while (j >= 0 && arr[j].compareTo(current) > 0) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+
+        arr[j + 1] = current;
+    }
+}
     // --- Merge sort: O(n log n), stable ---
     @SuppressWarnings("unchecked")
     public static <T extends Comparable<T>> void mergeSort(T[] a) {
