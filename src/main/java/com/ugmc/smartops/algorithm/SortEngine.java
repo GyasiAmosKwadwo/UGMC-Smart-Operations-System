@@ -89,7 +89,6 @@ public final class SortEngine {
             }
         }
     }
-
     // --- Quicksort: O(n log n) average, in-place, NOT stable ---
     public static <T extends Comparable<T>> void quickSort(T[] a) {
         quickSort(a, 0, a.length - 1);
