@@ -3,7 +3,10 @@ package com.ugmc.smartops.algorithm;
 import com.ugmc.smartops.datastructure.DynamicArray;
 import com.ugmc.smartops.datastructure.Graph;
 import com.ugmc.smartops.model.AlgorithmRun;
-
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -18,6 +21,7 @@ import java.util.Random;
 public class PerformanceBenchmark {
 
     private static final Random random = new Random(42);
+    private static final int TRIALS = 3;
     private static int runCounter = 1;
 
     /**
@@ -50,7 +54,7 @@ public class PerformanceBenchmark {
                 "Algorithm", "Input (N)", "Time (ms)", "Memory (KB)", "Big-O (Worst)"));
         System.out.println("-------------------------------------------------------------------------");
 
-        int[] sizes = {10, 100, 1000, 5000};
+        int[] sizes = {100, 500, 1000, 5000, 10000};
         String dateRun = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         for (int n : sizes) {
@@ -97,7 +101,7 @@ public class PerformanceBenchmark {
                 "Algorithm", "Input (N)", "Time (ms)", "Memory (KB)", "Big-O (Worst)"));
         System.out.println("-------------------------------------------------------------------------");
 
-        int[] sizes = {100, 1000, 10000, 100000};
+        int[] sizes = {100, 500, 1000, 5000, 10000};
         String dateRun = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         for (int n : sizes) {
@@ -129,7 +133,7 @@ public class PerformanceBenchmark {
                 "Algorithm", "Vertices (V)", "Time (ms)", "Memory (KB)", "Big-O (Worst)"));
         System.out.println("-------------------------------------------------------------------------");
 
-        int[] vertexCounts = {10, 30, 60, 100};
+        int[] vertexCounts = {50, 100, 200, 500};
         String dateRun = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         for (int v : vertexCounts) {
@@ -154,27 +158,39 @@ public class PerformanceBenchmark {
     // --- Helper Methods ---
 
     private static BenchmarkResult measureMemoryAndTime(Runnable task) {
-        System.gc();
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException ignored) {}
+        long totalElapsedNs = 0;
+        long maximumMemoryKb = 0;
+        for (int trial = 0; trial < TRIALS; trial++) {
+            System.gc();
+            long usedMemBefore = usedMemory();
+            long startTime = System.nanoTime();
+            task.run();
+            long elapsedNs = Math.max(1, System.nanoTime() - startTime);
+            long memoryKb = Math.max(0, (usedMemory() - usedMemBefore) / 1024);
+            totalElapsedNs += elapsedNs;
+            maximumMemoryKb = Math.max(maximumMemoryKb, memoryKb);
+        }
+        return new BenchmarkResult(totalElapsedNs / TRIALS, maximumMemoryKb);
+    }
 
-        long freeMemBefore = Runtime.getRuntime().freeMemory();
-        long totalMemBefore = Runtime.getRuntime().totalMemory();
-        long usedMemBefore = totalMemBefore - freeMemBefore;
+    private static long usedMemory() {
+        return Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+    }
 
-        long startTime = System.nanoTime();
-        task.run();
-        long endTime = System.nanoTime();
-
-        long freeMemAfter = Runtime.getRuntime().freeMemory();
-        long totalMemAfter = Runtime.getRuntime().totalMemory();
-        long usedMemAfter = totalMemAfter - freeMemAfter;
-
-        long elapsedNs = Math.max(1, endTime - startTime);
-        long memUsedKb = Math.max(0, (usedMemAfter - usedMemBefore) / 1024);
-
-        return new BenchmarkResult(elapsedNs, memUsedKb);
+    /** Exports raw benchmark records for plotting and report evidence. */
+    public static void exportCsv(DynamicArray<AlgorithmRun> runs, Path output) throws IOException {
+        Path parent = output.getParent();
+        if (parent != null) Files.createDirectories(parent);
+        try (BufferedWriter writer = Files.newBufferedWriter(output)) {
+            writer.write("run_id,algorithm_name,input_size,time_ns,memory_kb,date_run");
+            writer.newLine();
+            for (AlgorithmRun run : runs) {
+                writer.write(run.getRunId() + "," + run.getAlgorithmName() + ","
+                        + run.getInputSize() + "," + run.getTimeNs() + ","
+                        + run.getMemoryKb() + "," + run.getDateRun());
+                writer.newLine();
+            }
+        }
     }
 
     private static AlgorithmRun createRun(String name, int inputSize, BenchmarkResult result, String dateRun) {
