@@ -6,6 +6,7 @@ import com.ugmc.smartops.db.DataLoader;
 import com.ugmc.smartops.db.Database;
 import com.ugmc.smartops.db.OperationalStore;
 import com.ugmc.smartops.model.*;
+import com.ugmc.smartops.test.UnitTestRunner;
 import java.util.Scanner;
 
 /**
@@ -44,6 +45,8 @@ public class ConsoleApp {
             System.out.println("5. Demonstrate graph algorithms (BFS, DFS, Dijkstra, Prim, Kruskal)");
             System.out.println("6. Demonstrate optimization algorithms (Greedy & Dynamic Programming)");
             System.out.println("7. Reload data from persistence");
+            System.out.println("8. Run Empirical Performance Benchmarks & Report");
+            System.out.println("9. Run Automated Data Structure & Algorithm Unit Tests");
             System.out.println("0. Exit");
             System.out.print("Choose: ");
 
@@ -56,6 +59,8 @@ public class ConsoleApp {
                 case "5": demoGraphAlgorithms(); break;
                 case "6": demoOptimizationAlgorithms(); break;
                 case "7": reloadFromDb(); break;
+                case "8": runBenchmarks(); break;
+                case "9": runUnitTests(); break;
                 case "0":
                     System.out.println("Goodbye!");
                     return;
@@ -297,5 +302,17 @@ public class ConsoleApp {
         } catch (Exception e) {
             System.out.println("Reload failed: " + e.getMessage());
         }
+    }
+
+    private void runBenchmarks() {
+        DynamicArray<AlgorithmRun> runs = PerformanceBenchmark.runAllBenchmarks();
+        for (AlgorithmRun run : runs) {
+            store.addRun(run);
+        }
+        System.out.println("Recorded " + runs.size() + " benchmark runs into OperationalStore.");
+    }
+
+    private void runUnitTests() {
+        UnitTestRunner.runAllTests();
     }
 }

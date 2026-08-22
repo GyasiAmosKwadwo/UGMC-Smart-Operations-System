@@ -221,7 +221,11 @@ The menu lets an examiner run demonstrations without editing code:
 | 2      | Show loaded dataset summary                                                                 |
 | 3      | Demonstrate custom data structures (stack, queue, circular queue, deque, heap, linked list) |
 | 4      | Demonstrate searching & sorting (linear/binary search, selection/insertion/merge/quicksort) |
-| 5      | Reload data from persistence                                                                |
+| 5      | Demonstrate graph algorithms (BFS, DFS, Dijkstra, Prim, Kruskal)                           |
+| 6      | Demonstrate optimization algorithms (Greedy & Dynamic Programming)                         |
+| 7      | Reload data from persistence                                                                |
+| 8      | Run empirical performance benchmark lab & generate runtime reports                          |
+| 9      | Run automated data structure & algorithm unit tests suite                                   |
 | 0      | Exit                                                                                        |
 
 ### Project Structure
