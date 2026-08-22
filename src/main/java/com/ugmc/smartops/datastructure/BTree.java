@@ -73,6 +73,10 @@ public class BTree<K extends Comparable<K>, V> implements CustomCollection<K> {
 
     public void put(K key, V val) {
         if (key == null) throw new IllegalArgumentException("Key cannot be null");
+        if (get(key) != null) {
+            update(root, key, val, height);
+            return;
+        }
         Node u = insert(root, key, val, height);
         n++;
         if (u == null) return;
@@ -83,6 +87,24 @@ public class BTree<K extends Comparable<K>, V> implements CustomCollection<K> {
         t.children[1] = new Entry(u.children[0].key, null, u);
         root = t;
         height++;
+    }
+
+    private boolean update(Node node, K key, V val, int ht) {
+        if (ht == 0) {
+            for (int i = 0; i < node.m; i++) {
+                if (eq(key, node.children[i].key)) {
+                    node.children[i].val = val;
+                    return true;
+                }
+            }
+            return false;
+        }
+        for (int i = 0; i < node.m; i++) {
+            if (i + 1 == node.m || less(key, node.children[i + 1].key)) {
+                return update(node.children[i].next, key, val, ht - 1);
+            }
+        }
+        return false;
     }
 
     private Node insert(Node h, K key, V val, int ht) {

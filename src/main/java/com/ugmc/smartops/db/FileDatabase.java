@@ -6,8 +6,6 @@ import com.ugmc.smartops.model.Location;
 import com.ugmc.smartops.model.Resource;
 import com.ugmc.smartops.model.Road;
 import com.ugmc.smartops.model.ServiceRequest;
-
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;

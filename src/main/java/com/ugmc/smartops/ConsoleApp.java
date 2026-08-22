@@ -7,6 +7,7 @@ import com.ugmc.smartops.db.Database;
 import com.ugmc.smartops.db.OperationalStore;
 import com.ugmc.smartops.model.*;
 import com.ugmc.smartops.test.UnitTestRunner;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -77,6 +78,7 @@ public class ConsoleApp {
             store.setRoads(loader.loadRoads("docs/questions"));
             store.setRequests(loader.loadServiceRequests("docs/questions"));
             store.indexResources(loader.loadResources("docs/questions"));
+            store.setRuns(db.loadAlgorithmRuns());
             System.out.println("Data loaded. " + msg);
         } catch (Exception e) {
             System.out.println("Failed to load data: " + e.getMessage());
@@ -296,6 +298,7 @@ public class ConsoleApp {
             store.setRoads(roads);
             store.setRequests(reqs);
             store.indexResources(res);
+            store.setRuns(db.loadAlgorithmRuns());
             System.out.println("Reloaded from persistence: " + locs.size()
                     + " locations, " + roads.size() + " roads, "
                     + reqs.size() + " requests, " + res.size() + " resources.");
@@ -308,6 +311,18 @@ public class ConsoleApp {
         DynamicArray<AlgorithmRun> runs = PerformanceBenchmark.runAllBenchmarks();
         for (AlgorithmRun run : runs) {
             store.addRun(run);
+            try {
+                loader.recordRun(run);
+            } catch (Exception e) {
+                System.out.println("Could not persist benchmark run "
+                        + run.getRunId() + ": " + e.getMessage());
+            }
+        }
+        try {
+            PerformanceBenchmark.exportCsv(runs, Paths.get("data/performance_results.csv"));
+            System.out.println("Exported raw results to data/performance_results.csv.");
+        } catch (Exception e) {
+            System.out.println("Could not export benchmark CSV: " + e.getMessage());
         }
         System.out.println("Recorded " + runs.size() + " benchmark runs into OperationalStore.");
     }
