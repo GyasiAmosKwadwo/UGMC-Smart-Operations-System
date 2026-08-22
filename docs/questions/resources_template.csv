@@ -19,3 +19,13 @@ RES017,Oncology Chemotherapy Transport Cart,L014,2,AVAILABLE
 RES018,Renal Dialysis Transport Attendant,L015,1,AVAILABLE
 RES019,MTSC Simulation Equipment Runner,L012,2,AVAILABLE
 RES020,Biomedical Maintenance Response Van,L017,4,MAINTENANCE
+RES021,Cardiac Emergency Response Team,L021,2,AVAILABLE
+RES022,Gastroenterology Endoscopy Assistant,L022,1,AVAILABLE
+RES023,Pulmonary Respiratory Therapist,L023,1,AVAILABLE
+RES024,Physical Rehabilitation Specialist,L024,2,AVAILABLE
+RES025,Occupational Therapy Assistant,L025,1,AVAILABLE
+RES026,Speech Therapy Support Staff,L026,1,AVAILABLE
+RES027,Mental Health Crisis Intervention Team,L027,2,AVAILABLE
+RES028,Psychiatric Emergency Response Unit,L028,1,DISPATCHED
+RES029,Child Psychiatry Assessment Team,L029,1,AVAILABLE
+RES030,Medical Records Retrieval Courier,L030,2,AVAILABLE
