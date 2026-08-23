@@ -12,15 +12,24 @@ public final class SortEngine {
     }
 
     // --- Selection sort: O(n^2), in-place, NOT stable ---
+    // Grows a sorted region on the left, one element at a time, by
+    // repeatedly finding the smallest value still in the unsorted
+    // remainder and swapping it into the next open slot.
     public static <T extends Comparable<T>> void selectionSort(T[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minIdx = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j].compareTo(arr[minIdx]) < 0) {
-                    minIdx = j;
+        int boundary = 0;
+        while (boundary < arr.length - 1) {
+            int minIndex = boundary;
+            int k = boundary + 1;
+            while (k < arr.length) {
+                if (arr[k].compareTo(arr[minIndex]) < 0) {
+                    minIndex = k;
                 }
+                k++;
             }
-            swap(arr, i, minIdx);
+            if (minIndex != boundary) {
+                swap(arr, boundary, minIndex);
+            }
+            boundary++;
         }
     }
 
