@@ -97,8 +97,8 @@ public class UnitTestRunner {
         assertEquals(3, list.size(), "LinkedList size");
         assertEquals(5, list.pollFirst(), "LinkedList pollFirst");
         assertEquals(2, list.size(), "LinkedList size after poll");
-        assertEquals(20, list.pollLast(), "LinkedList pollLast");
-        assertTrue(list.size() == 1, "LinkedList size after pollLast");
+        assertTrue(list.remove(10), "LinkedList remove element");
+        assertEquals(1, list.size(), "LinkedList size after remove");
 
         // Stack
         Stack<String> stack = new Stack<>();
