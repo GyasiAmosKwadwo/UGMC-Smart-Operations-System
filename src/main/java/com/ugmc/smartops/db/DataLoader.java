@@ -7,7 +7,6 @@ import com.ugmc.smartops.model.Resource;
 import com.ugmc.smartops.model.Road;
 import com.ugmc.smartops.model.ServiceRequest;
 import com.ugmc.smartops.util.CsvReader;
-
 import java.io.IOException;
 
 /**
@@ -51,6 +50,7 @@ public class DataLoader {
         DynamicArray<DynamicArray<String>> rows =
                 CsvReader.readAll(dir + "/locations_template.csv", true);
         for (DynamicArray<String> row : rows) {
+            requireColumns(row, 6, "location");
             out.add(new Location(
                     row.get(0), row.get(1), row.get(2), row.get(3),
                     Double.parseDouble(row.get(4)), Double.parseDouble(row.get(5))));
@@ -63,6 +63,7 @@ public class DataLoader {
         DynamicArray<DynamicArray<String>> rows =
                 CsvReader.readAll(dir + "/roads_template.csv", true);
         for (DynamicArray<String> row : rows) {
+            requireColumns(row, 6, "road");
             out.add(new Road(
                     row.get(0), row.get(1), row.get(2),
                     Double.parseDouble(row.get(3)), Double.parseDouble(row.get(4)),
@@ -76,6 +77,7 @@ public class DataLoader {
         DynamicArray<DynamicArray<String>> rows =
                 CsvReader.readAll(dir + "/service_requests_template.csv", true);
         for (DynamicArray<String> row : rows) {
+            requireColumns(row, 8, "service request");
             out.add(new ServiceRequest(
                     row.get(0), row.get(1), row.get(2), row.get(3),
                     Integer.parseInt(row.get(4)), row.get(5), row.get(6), row.get(7)));
@@ -88,6 +90,7 @@ public class DataLoader {
         DynamicArray<DynamicArray<String>> rows =
                 CsvReader.readAll(dir + "/resources_template.csv", true);
         for (DynamicArray<String> row : rows) {
+            requireColumns(row, 5, "resource");
             out.add(new Resource(
                     row.get(0), row.get(1), row.get(2),
                     Integer.parseInt(row.get(3)), row.get(4)));
@@ -97,5 +100,13 @@ public class DataLoader {
 
     public void recordRun(AlgorithmRun run) throws Exception {
         db.saveAlgorithmRun(run);
+    }
+
+    private void requireColumns(DynamicArray<String> row, int expected, String entity)
+            throws IOException {
+        if (row.size() < expected) {
+            throw new IOException("Invalid " + entity + " row: expected "
+                    + expected + " columns but found " + row.size());
+        }
     }
 }

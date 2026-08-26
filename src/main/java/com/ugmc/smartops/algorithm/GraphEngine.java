@@ -203,32 +203,27 @@ public class GraphEngine {
         DynamicArray<Graph.Edge> mstEdges = new DynamicArray<>();
         if (graph == null || graph.getVertices().isEmpty()) return mstEdges;
 
-        String startNode = null;
-        for (String v : graph.getVertices()) {
-            startNode = v;
-            break;
-        }
-
         Set<String> visited = new Set<>();
-        visited.add(startNode);
+        for (String componentStart : graph.getVertices()) {
+            if (visited.contains(componentStart)) continue;
+            visited.add(componentStart);
+            MinHeap<ScoredEdge> pq = new MinHeap<>();
+            for (Graph.Edge edge : graph.getNeighbors(componentStart)) {
+                pq.insert(new ScoredEdge(edge));
+            }
 
-        MinHeap<ScoredEdge> pq = new MinHeap<>();
-        for (Graph.Edge edge : graph.getNeighbors(startNode)) {
-            pq.insert(new ScoredEdge(edge));
-        }
+            while (!pq.isEmpty()) {
+                ScoredEdge scoredEdge = pq.extractMin();
+                Graph.Edge edge = scoredEdge.edge;
+                if (visited.contains(edge.getDestination())) continue;
 
-        while (!pq.isEmpty() && visited.size() < graph.getVertices().size()) {
-            ScoredEdge scoredEdge = pq.extractMin();
-            Graph.Edge edge = scoredEdge.edge;
+                visited.add(edge.getDestination());
+                mstEdges.add(edge);
 
-            if (visited.contains(edge.getDestination())) continue;
-
-            visited.add(edge.getDestination());
-            mstEdges.add(edge);
-
-            for (Graph.Edge nextEdge : graph.getNeighbors(edge.getDestination())) {
-                if (!visited.contains(nextEdge.getDestination())) {
-                    pq.insert(new ScoredEdge(nextEdge));
+                for (Graph.Edge nextEdge : graph.getNeighbors(edge.getDestination())) {
+                    if (!visited.contains(nextEdge.getDestination())) {
+                        pq.insert(new ScoredEdge(nextEdge));
+                    }
                 }
             }
         }

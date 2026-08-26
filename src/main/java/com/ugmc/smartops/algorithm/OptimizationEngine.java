@@ -86,6 +86,12 @@ public class OptimizationEngine {
      * @param capacityMaxBudget total available capacity budget
      */
     public static OptimizationResult dynamicProgrammingCapacityPlan(DynamicArray<ServiceRequest> requests, int capacityMaxBudget) {
+        if (requests == null) {
+            throw new IllegalArgumentException("Requests cannot be null");
+        }
+        if (capacityMaxBudget < 0) {
+            throw new IllegalArgumentException("Capacity budget cannot be negative");
+        }
         int n = requests.size();
         int[] weights = new int[n];
         int[] values = new int[n];

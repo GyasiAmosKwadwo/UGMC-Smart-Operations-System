@@ -6,6 +6,8 @@ import com.ugmc.smartops.db.DataLoader;
 import com.ugmc.smartops.db.Database;
 import com.ugmc.smartops.db.OperationalStore;
 import com.ugmc.smartops.model.*;
+import com.ugmc.smartops.test.UnitTestRunner;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -44,6 +46,8 @@ public class ConsoleApp {
             System.out.println("5. Demonstrate graph algorithms (BFS, DFS, Dijkstra, Prim, Kruskal)");
             System.out.println("6. Demonstrate optimization algorithms (Greedy & Dynamic Programming)");
             System.out.println("7. Reload data from persistence");
+            System.out.println("8. Run Empirical Performance Benchmarks & Report");
+            System.out.println("9. Run Automated Data Structure & Algorithm Unit Tests");
             System.out.println("0. Exit");
             System.out.print("Choose: ");
 
@@ -56,6 +60,8 @@ public class ConsoleApp {
                 case "5": demoGraphAlgorithms(); break;
                 case "6": demoOptimizationAlgorithms(); break;
                 case "7": reloadFromDb(); break;
+                case "8": runBenchmarks(); break;
+                case "9": runUnitTests(); break;
                 case "0":
                     System.out.println("Goodbye!");
                     return;
@@ -72,6 +78,7 @@ public class ConsoleApp {
             store.setRoads(loader.loadRoads("docs/questions"));
             store.setRequests(loader.loadServiceRequests("docs/questions"));
             store.indexResources(loader.loadResources("docs/questions"));
+            store.setRuns(db.loadAlgorithmRuns());
             System.out.println("Data loaded. " + msg);
         } catch (Exception e) {
             System.out.println("Failed to load data: " + e.getMessage());
@@ -291,11 +298,36 @@ public class ConsoleApp {
             store.setRoads(roads);
             store.setRequests(reqs);
             store.indexResources(res);
+            store.setRuns(db.loadAlgorithmRuns());
             System.out.println("Reloaded from persistence: " + locs.size()
                     + " locations, " + roads.size() + " roads, "
                     + reqs.size() + " requests, " + res.size() + " resources.");
         } catch (Exception e) {
             System.out.println("Reload failed: " + e.getMessage());
         }
+    }
+
+    private void runBenchmarks() {
+        DynamicArray<AlgorithmRun> runs = PerformanceBenchmark.runAllBenchmarks();
+        for (AlgorithmRun run : runs) {
+            store.addRun(run);
+            try {
+                loader.recordRun(run);
+            } catch (Exception e) {
+                System.out.println("Could not persist benchmark run "
+                        + run.getRunId() + ": " + e.getMessage());
+            }
+        }
+        try {
+            PerformanceBenchmark.exportCsv(runs, Paths.get("data/performance_results.csv"));
+            System.out.println("Exported raw results to data/performance_results.csv.");
+        } catch (Exception e) {
+            System.out.println("Could not export benchmark CSV: " + e.getMessage());
+        }
+        System.out.println("Recorded " + runs.size() + " benchmark runs into OperationalStore.");
+    }
+
+    private void runUnitTests() {
+        UnitTestRunner.runAllTests();
     }
 }

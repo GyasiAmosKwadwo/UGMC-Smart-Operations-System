@@ -19,3 +19,33 @@ L017,Central Medical Stores & Equipment Depot,Logistics Block,Support,5.6575,-0.
 L018,UGMC Administration & Directorates,Admin Block,Administrative,5.6580,-0.1794
 L019,Main Security Gate (GA-337-6980),Main Entrance,Security,5.6495,-0.1865
 L020,IVF & Assisted Reproductive Tech Centre,Specialist Women Centre,Clinical,5.6538,-0.1828
+L021,Cardiac Catheterization Lab,Cardiology Centre,Clinical,5.6585,-0.1790
+L022,Endoscopy & Gastroenterology Unit,Diagnostics Wing,Diagnostic,5.6590,-0.1786
+L023,Pulmonary Function & Sleep Lab,Respiratory Medicine,Clinical,5.6595,-0.1782
+L024,Physical Medicine & Rehabilitation Centre,Rehabilitation Wing,Clinical,5.6600,-0.1778
+L025,Occupational Therapy Department,Rehabilitation Wing,Clinical,5.6605,-0.1774
+L026,Speech & Language Therapy Unit,Rehabilitation Wing,Clinical,5.6610,-0.1770
+L027,Mental Health & Psychiatric Services,Psychiatry Block,Clinical,5.6615,-0.1766
+L028,Substance Abuse Treatment Centre,Psychiatry Block,Clinical,5.6620,-0.1762
+L029,Child & Adolescent Psychiatry,Psychiatry Block,Clinical,5.6625,-0.1758
+L030,Medical Records & Health Information,Admin Block,Administrative,5.6630,-0.1754
+L031,Patient Registration & Admissions,Main Entrance,Administrative,5.6490,-0.1870
+L032,Billing & Insurance Services,Admin Block,Administrative,5.6635,-0.1750
+L033,Hospital Cafeteria & Nutrition Services,Central Support Block,Support,5.6640,-0.1746
+L034,Staff Accommodation Block A,Staff Housing,Support,5.6645,-0.1742
+L035,Staff Accommodation Block B,Staff Housing,Support,5.6650,-0.1738
+L036,Medical Waste Management Facility,Logistics Block,Support,5.6655,-0.1734
+L037,Laundry & Linen Services,Logistics Block,Support,5.6660,-0.1730
+L038,Engineering & Maintenance Workshop,Logistics Block,Support,5.6665,-0.1726
+L039,Security Command Centre,Main Entrance,Security,5.6488,-0.1875
+L040,Visitor Parking Area A,Main Entrance,Support,5.6480,-0.1880
+L041,Visitor Parking Area B,Main Entrance,Support,5.6482,-0.1885
+L042,Staff Parking Zone,Perimeter & Logistics,Support,5.6485,-0.1890
+L043,Ambulance Parking Bay,Perimeter & Logistics,Emergency,5.6490,-0.1895
+L044,Helicopter Landing Pad,Perimeter & Logistics,Emergency,5.6492,-0.1900
+L045,External Pharmacy Drop-off,Main Entrance,Pharmacy,5.6498,-0.1888
+L046,Medical Gas Supply Station,Logistics Block,Support,5.6670,-0.1722
+L047,Backup Power Generator House,Logistics Block,Support,5.6675,-0.1718
+L048,Water Treatment & Storage Facility,Logistics Block,Support,5.6680,-0.1714
+L049,Telecommunications Hub,Admin Block,Administrative,5.6685,-0.1710
+L050,Quality Assurance & Accreditation Office,Admin Block,Administrative,5.6690,-0.1706

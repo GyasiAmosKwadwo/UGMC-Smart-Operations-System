@@ -161,6 +161,30 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         inorder(node.right, visitor);
     }
 
+    /** Performs a pre-order traversal, invoking the visitor for each node. */
+    public void preorder(Visitor<K, V> visitor) {
+        preorder(root, visitor);
+    }
+
+    private void preorder(Node<K, V> node, Visitor<K, V> visitor) {
+        if (node == null) return;
+        visitor.visit(node.key, node.value);
+        preorder(node.left, visitor);
+        preorder(node.right, visitor);
+    }
+
+    /** Performs a post-order traversal, invoking the visitor for each node. */
+    public void postorder(Visitor<K, V> visitor) {
+        postorder(root, visitor);
+    }
+
+    private void postorder(Node<K, V> node, Visitor<K, V> visitor) {
+        if (node == null) return;
+        postorder(node.left, visitor);
+        postorder(node.right, visitor);
+        visitor.visit(node.key, node.value);
+    }
+
     public int size() { return size; }
 
     public boolean isEmpty() { return size == 0; }

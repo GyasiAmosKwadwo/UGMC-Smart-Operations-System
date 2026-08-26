@@ -68,6 +68,13 @@ public class OperationalStore {
         runs.addLast(run);
     }
 
+    public void setRuns(DynamicArray<AlgorithmRun> data) {
+        runs.clear();
+        for (AlgorithmRun run : data) {
+            runs.addLast(run);
+        }
+    }
+
     public DynamicArray<Location> getLocations() { return locations; }
     public DynamicArray<Road> getRoads() { return roads; }
     public DynamicArray<ServiceRequest> getRequests() { return requests; }
